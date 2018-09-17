@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装插件隔行变色加全选</title>
+    <style>
+        *{padding:0;margin:0;}
+        td,th{width: 70px;height:30px;text-align: center}
+        .even{background: #fe96c9;}/*偶数行*/
+        .odd{background: #CCCCCC;}/*奇数行*/
+        .selected{background: #ff0;}
+    </style>
+</head>
+<body>
+<table border="1" cellspacing="0">
+    <thead>
+    <tr><th><input type="checkbox"/></th><th>姓名</th><th>年龄</th><th>性格</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><input type="checkbox"/></td><td>桑伟峰</td><td>18</td><td>高富帅</td></tr>
+        <tr><td><input type="checkbox"/></td><td>屈自强</td><td>18</td><td>高富逗</td></tr>
+        <tr><td><input type="checkbox"/></td><td>刘文龙</td><td>18</td><td>学习委员</td>
+        <tr><td><input type="checkbox"/></td><td>刘文祥</td><td>18</td><td>高富帅</td></tr>
+        <tr><td><input type="checkbox"/></td><td>王俊颖</td><td>18</td><td>白富美</td></tr>
+    </tbody>
+</table>
+<button>反选</button>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    ;(function($){
+        $.fn.extend({
+            "gehangbianse":function(value){
+                value= $.extend({
+                    odd:"odd",/*奇数行样式*/
+                    even:"even",/*偶数行样式*/
+                    selected:"selected"/*选中行样式*/
+                },value);
+                $("tbody tr:odd").addClass(value.odd);//奇数行
+                $("tbody tr:even").addClass(value.even);//偶数行
+                //给第一个input框添加点击事件
+                $("input:first").click(function(){
+                    $("input").prop("checked",$(this).prop("checked"));//全选和全不选
+                    console.log($(this).prop("checked"));
+                    if($(this).prop("checked")){
+                        //如果当前点击的input框已被选中,设置颜色
+                        $("input").parent().parent().addClass(value.selected);
+                    }else{
+                        $("input").parent().parent().removeClass(value.selected);
+                    }
+                });
+                //给所有的input按钮添加selected样式
+                $("input").click(function(event){
+                    //event.preventDefault();
+                    event.stopPropagation();
+                    var a=true;
+                    if($(this).prop("checked")){
+                        $(this).parent().parent().addClass(value.selected);
+                    }else{
+                        $(this).parent().parent().removeClass(value.selected);
+                    }
+                    /*return false;*/
+                    //判断下面的所有Input按钮是否全部被选中
+                    $("input").each(function(i) {
+                        if(i!=0) {
+                            if( $("input").eq(i).prop("checked")==false) {
+                                a=false;
+                                $("input").eq(0).parent().parent().removeClass(value.selected);
+                            }
+                        }
+
+                    });
+                    //当下面所有的按钮选中，上面的全选按钮选中
+                    $("input").eq(0).prop("checked",a);
+                    if(a){
+                        $("input").eq(0).parent().parent().addClass(value.selected);
+                    }
+                });
+
+                //给所有的tr添加selected样式
+                $("tr").click(function(){
+                    console.log(2)
+                    if($(this).find("input").prop("checked")){
+                        $(this).removeClass("selected");
+                        $(this).find("input").prop("checked",false);
+                    }else{
+                        $(this).addClass("selected");
+                        $(this).find("input").prop("checked",true);
+                    }
+                })
+                //反选事件的添加
+                $("button").click(function(){
+                    var a=true;
+                    $("input").each(function(i){
+                        if(i!=0){
+                            $("input").eq(i).prop("checked",!$("input").eq(i).prop('checked'))
+                            if( $("input").eq(i).prop("checked")==false){
+                                a=false;
+                                $("input").eq(0).parent().parent().removeClass(value.selected);
+                            }
+                        }
+                        if($("input").eq(i).prop("checked")){
+                            $("input").eq(i).parent().parent().addClass(value.selected);
+                        }else{
+                            $("input").eq(i).parent().parent().removeClass(value.selected);
+                        }
+                    })
+                    $("input").eq(0).prop("checked",a);
+                    if(a){
+                        $("input").eq(0).parent().parent().addClass(value.selected);
+                    }
+                })
+                    return this;
+            }
+        })
+    })(jQuery)
+
+    $("table").gehangbianse().find("th").css("color","red");
+</script>
+</body>
+</html>

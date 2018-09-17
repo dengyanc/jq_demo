@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	</head>
+	<body>
+		<div class="box">
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:"json/Citys.json",
+					async:true,
+					dataType:"JSON",
+					success:function(data){
+						dataList = data;
+						var str = null;
+						$.each(dataList, function(i,nm) {
+							str += "<option>"+nm.name+"</option>";
+							$("select").eq(0).html(str);
+						});
+					},
+					error:function(error){
+						alert(1);
+					}
+				});
+				$("select").eq(0).change(function(){
+					var val = $(this).val();
+					var str = null;
+					$("select").eq(2).html("<option>请选择</option>")
+					$.each(dataList, function(i,nm) {
+						if(nm.name == val){
+							$.each(nm.sub, function(n,su) {
+								str += "<option>"+su.name+"</option>"
+							});
+							$("select").eq(1).html(str);
+						}
+					});
+				})
+				$("select").eq(1).change(function(){
+					var val = $(this).val();
+					var val0=$("select").eq(0).val();
+					var str = null;
+					$.each(dataList, function(i,nm) {
+						if(nm.name == val0){
+							$.each(nm.sub, function(n,nmnm) {
+								if(nmnm.name == val && nmnm.sub != undefined){
+									$.each(nmnm.sub, function(s,su) {
+										str += "<option>"+su.name+"</option>"
+									});
+									$("select").eq(2).html(str);
+								}
+							});
+						}
+						
+					});
+				})
+			})
+		</script>
+	</body>
+</html>

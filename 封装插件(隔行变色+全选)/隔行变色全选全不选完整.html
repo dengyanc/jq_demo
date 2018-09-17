@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行变色加全选全不选完整无bug</title>
+    <style>
+        *{padding:0;margin:0;}
+        .odd{background: #fe96c9;}
+        .even{background: #2B93D2;}
+        .selected{background: #f00;}
+    </style>
+</head>
+<body>
+	<button  class="fan">反选</button>
+    <button>全选</button>
+    <table border="1" cellspacing="0">
+    
+        <thead>
+            <tr><th>选择</th><th>姓名</th><th>年龄</th><th>风格</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><input type="checkbox"/></td><td>桑伟峰</td><td>18</td><td>高富帅</td></tr>
+            <tr><td><input type="checkbox"/></td><td>屈自强</td><td>18</td><td>高富帅</td></tr>
+            <tr><td><input type="checkbox"/></td><td>刘文龙</td><td>18</td><td>高富帅</td></tr>
+            <tr><td><input type="checkbox"/></td><td>刘文祥</td><td>18</td><td>高富帅</td></tr>
+            <tr><td><input type="checkbox"/></td><td>王俊颖</td><td>18</td><td>白富美</td></tr>
+        </tbody>
+    </table>
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("tbody tr:odd").addClass("odd");//奇数行
+            $("tbody tr:even").addClass("even");//偶数行
+
+            //给反选添加点击事件
+            $("fan").click(function(){
+                $("input").prop("checked",$(this).prop("checked"));
+                console.log($(this).prop("checked"));
+                if($(this).prop("checked")){
+                    $("input").parent().parent().addClass("selected");
+                }else{
+                    $("input").parent().parent().removeClass("selected");
+                }
+            })
+
+            //给所有的Input按钮添加selected样式
+            $("input").click(function(event){
+                event.stopPropagation();
+                var a=true;
+                if($(this).prop("checked")){
+                    $(this).parent().parent().addClass("selected");
+                }else{
+                    $(this).parent().parent().removeClass("selected");
+                }
+                //判断下面的所有Input按钮是否全部被选中
+                $("input").each(function(i) {
+                    if(i!=0) {
+                        if( $("input").eq(i).prop("checked")==false) {
+                            a=false;
+                            $("input").eq(0).parent().parent().removeClass("selected");
+                        }
+                    }
+                });
+                //当下面所有的按钮选中，上面的全选按钮选中
+                $("input").eq(0).prop("checked",a);
+                if(a){
+                    $("input").eq(0).parent().parent().addClass("selected");
+                }
+            });
+
+            //给所有的tr添加selected样式
+            $("tr").click(function(){
+                console.log(2);
+                if($(this).find("input").prop("checked")){
+                    $(this).removeClass("selected");
+                    $(this).find("input").prop("checked",false);
+                }else{
+                    $(this).addClass("selected");
+                    $(this).find("input").prop("checked",true);
+                }
+            })
+
+            //反选事件的添加
+            $("button").click(function(){
+                var a=true;
+                $("input").each(function(i){
+                    if(i!=0){
+                        $("input").eq(i).prop("checked",!$("input").eq(i).prop("checked"));
+                        if( $("input").eq(i).prop("checked")==false) {
+                            a=false;
+                            $("input").eq(0).parent().parent().removeClass("selected");
+                        }
+                    }
+                    if($("input").eq(i).prop("checked")){
+                        $("input").eq(i).parent().parent().addClass("selected");
+                    }else{
+                        $("input").eq(i).parent().parent().removeClass("selected");
+                    }
+                });
+                $("input").eq(0).prop("checked",a);
+                if(a){
+                    $("input").eq(0).parent().parent().addClass("selected");
+                }
+            })
+        })
+    </script>
+
+</body>
+</html>

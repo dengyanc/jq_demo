@@ -1,0 +1,342 @@
+body,
+html {
+  min-width: 1000px;
+}
+.header1 {
+  width: 100%;
+  border-bottom: 2px solid #f10180;
+}
+.header1 .header {
+  width: 1000px;
+  height: 93px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.header1 .header a {
+  display: block;
+  height: 73px;
+  width: 400px;
+  background: url(../img/register/normalLogin_sprite.png) no-repeat 0 0;
+  float: left;
+}
+.header1 .header span {
+  display: block;
+  width: 445px;
+  height: 28px;
+  background: url(../img/register/sprite.png) no-repeat left bottom;
+  float: right;
+  margin-top: 25px;
+}
+.main0 {
+  width: 1000px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.main0 h4 {
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+.main0 .wu {
+  height: 200px;
+  width: 1580px;
+  position: absolute;
+  left: 0;
+  top: 50px;
+}
+.main0 .wu li {
+  height: 200px;
+  float: left;
+  width: 158px;
+  overflow: hidden;
+}
+.main0 .wu li img {
+  display: block;
+  height: 100%;
+}
+.main {
+  width: 1000px;
+  height: auto;
+  margin: 0 auto;
+}
+.main h2 {
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+.main table {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e0e0e0;
+}
+.main table thead tr th {
+  height: 38px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 12px;
+  color: #333333;
+}
+.main table thead tr th:nth-child(2) {
+  font-size: 16px;
+  color: #f10180;
+  text-align: left;
+}
+.main table tbody tr td dl {
+  height: 90px;
+  width: auto;
+}
+.main table tbody tr td dl dt {
+  height: 70px;
+  margin-top: 10px;
+  float: left;
+}
+.main table tbody tr td dl dt img {
+  display: block;
+  height: 100%;
+}
+.main table tbody tr td dl dd {
+  height: 70px;
+  margin-top: 15px;
+  float: left;
+  margin-left: 15px;
+}
+.main table tbody tr td dl dd p {
+  height: 24px;
+  line-height: 24px;
+}
+.main table tbody tr td .dan {
+  font-weight: bold;
+}
+.main table tbody tr td span {
+  display: inline-block;
+  width: 74px;
+  height: 22px;
+  border: 1px solid #e3e2e2;
+  line-height: 22px;
+  text-align: center;
+}
+.main table tbody tr td span a {
+  display: block;
+  width: 22px;
+  height: 22px;
+  color: #aaaaaa;
+  line-height: 22px;
+  text-align: center;
+}
+.main table tbody tr td span .jian {
+  float: left;
+  border-right: 1px solid #e3e2e2;
+}
+.main table tbody tr td span .jia {
+  float: right;
+  border-left: 1px solid #e3e2e2;
+}
+.main table tbody tr td .xiaoji {
+  color: #f10180;
+  font-weight: bold;
+}
+.main table tbody tr td:first-child {
+  width: 50px;
+  text-align: center;
+}
+.main table tbody tr td:nth-child(2) {
+  width: 400px;
+}
+.main table tbody tr td:nth-child(3) {
+  width: 125px;
+  text-align: center;
+}
+.main table tbody tr td:nth-child(4) {
+  width: 175px;
+  text-align: center;
+}
+.main table tbody tr td:nth-child(5) {
+  width: 125px;
+  text-align: center;
+  color: #f10180;
+}
+.main table tbody tr td:nth-child(6) {
+  width: 125px;
+  text-align: center;
+}
+.main table tbody .even {
+  background: #ccc;
+}
+.main table tbody .odd {
+  background: #fff;
+}
+.main table tbody .active {
+  background: #f00;
+}
+.main_zong {
+  width: 998px;
+  height: 158px;
+  margin: 0 auto;
+  border: 1px solid #e2e1e1;
+  margin-top: 40px;
+  position: relative;
+}
+.main_zong .left {
+  width: 15%;
+  height: 112px;
+  float: left;
+}
+.main_zong .left span {
+  display: block;
+  width: 122px;
+  height: 30px;
+  border: 1px solid #f10180;
+  border-radius: 5px;
+  color: #f10180;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.main_zong .center {
+  width: 35%;
+  height: 112px;
+  float: left;
+}
+.main_zong .center span {
+  display: block;
+  width: 122px;
+  height: 30px;
+  border: 1px solid #f10180;
+  border-radius: 5px;
+  color: #f10180;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.main_zong .right {
+  width: 50%;
+  height: 112px;
+  float: right;
+}
+.main_zong .right p {
+  margin-right: 20px;
+  text-align: right;
+  color: #888888;
+  height: 30px;
+  line-height: 30px;
+}
+.main_zong .right p span {
+  padding-left: 70px;
+  color: #333333;
+}
+.main_zong .right p b {
+  color: #f10180;
+}
+.main_zong .right p:first-child {
+  margin-top: 15px;
+}
+.main_zong .right p:last-child span {
+  color: #f10180;
+}
+.main_zong .right p:last-child span i {
+  font-size: 14px;
+}
+.main_zong h3 {
+  height: 48px;
+  width: 100%;
+  background: #f3f3f3;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #e2e1e1;
+}
+.main_zong h3 a {
+  display: block;
+  width: 250px;
+  height: 100%;
+  background: #f10180;
+  color: #fff;
+  line-height: 48px;
+  text-align: center;
+  font-size: 18px;
+  float: right;
+}
+footer {
+  width: 100%;
+  height: 240px;
+  background: #fcfcfc;
+  border-top: 1px solid #ebebeb;
+  margin-top: 50px;
+}
+footer .footer {
+  width: 1000px;
+  height: 140px;
+  margin: 0 auto;
+}
+footer .footer .footer_one {
+  margin: 0 auto;
+  width: 1000px;
+  height: 140px;
+}
+footer .footer .footer_one ul {
+  margin-top: 10px;
+  float: left;
+  padding-right: 115px;
+}
+footer .footer .footer_one ul .first {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+footer .footer .footer_one ul li {
+  cursor: pointer;
+  font-size: 12px;
+  height: 22px;
+}
+footer .footer .footer_one ul:last-child {
+  padding-right: 0;
+}
+footer .foot {
+  margin: 0 auto;
+  text-align: center;
+  line-height: 24px;
+  width: 1000px;
+  height: 93px;
+}
+footer .foot .foot_one {
+  padding-top: 20px;
+}
+footer .foot .foot_one p:last-child {
+  height: 40px;
+  line-height: 40px;
+}
+footer .foot .foot_one p:last-child a {
+  color: #999;
+  font-size: 12px;
+}
+footer .foot .foot_one p:last-child span {
+  padding: 0 7px 0 7px;
+}
+footer .foot .foot_one p:first-child {
+  background: #f10180;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+}
+footer .foot .foot_one p:first-child a {
+  color: #fff;
+  background: #f10180;
+}
+footer .foot .foot_one p:first-child span {
+  padding: 0 7px 0 7px;
+  background: #f10180;
+}

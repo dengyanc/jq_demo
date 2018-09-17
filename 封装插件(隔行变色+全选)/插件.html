@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			.even		{ background:#FFF38F;}  /* 偶数行样式*/
+			.odd		{ background:#FFFFEE;}  /* 奇数行样式*/
+			.selected	{ background:#FF6500;color:#fff;}
+		</style>
+	</head>
+	<body>
+		<table border="1" cellspacing="0">
+			<tr><td><input type="checkbox"/></td><td>姓名</td><td>性别</td><td>暂住地</td></tr>
+			<tr><td><input type="checkbox"/></td><td>吴助教</td><td>男</td><td>大桥底下</td></tr>
+			<tr><td><input type="checkbox"/></td><td>赵讲师</td><td>女</td><td>大桥底下</td></tr>
+			<tr><td><input type="checkbox"/></td><td>刘文龙</td><td>男</td><td>八维宿舍</td></tr>
+			<tr><td><input type="checkbox"/></td><td>桑伟峰</td><td>男</td><td>八维宿舍</td></tr>
+			<tr><td><input type="checkbox"/></td><td>刘文祥</td><td>男</td><td>八维宿舍</td></tr>
+		</table>
+		<button>反选</button>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<!--<script type="text/javascript" src="js/cj.js"></script>-->
+		<script>
+		;(function($)
+		{
+			$.fn.extend({
+				"gehang":function(value)
+				{
+					value=$.extend({
+						odd:"odd",//奇数行样式
+						even:"even",//偶数行样式
+						selected:"selected"//选中的样式
+					},value);
+					
+					$("tbody>tr:odd").addClass(value.odd);
+					$("tbody>tr:even").addClass(value.even);
+					$("tbody input:first").click(function()
+					{
+						$("input").prop("checked",$(this).prop('checked'))
+						if($(this).prop("checked"))
+							{
+	
+								$("input").parent().parent().addClass(value.selected)
+							}
+							else
+							{
+								$("input").parent().parent().removeClass(value.selected)
+							}
+					});
+					$("button").click(function()
+					{
+						$("input").each(function(i)
+						{
+							if(i!=0)
+							{
+								$("input").eq(i).prop("checked",!$("input").eq(i).prop('checked'))
+							}
+							if($("input").eq(i).prop("checked"))
+							{
+	
+								$("input").eq(i).parent().parent().addClass(value.selected)
+							}
+							else
+							{
+								$("input").eq(i).parent().parent().removeClass(value.selected)
+							}
+			
+						})
+					})
+					$("input").click(function()
+					{
+						if($(this).prop("checked"))
+						{
+
+							$(this).parent().parent().addClass(value.selected)
+						}
+						else
+						{
+							$(this).parent().parent().removeClass(value.selected)
+						}
+					})
+					return this
+			}
+			
+				
+		})
+		})(jQuery)
+		
+		$("table").gehang().find("th").css("color","red");
+	</script>
+	</body>
+	
+</html>

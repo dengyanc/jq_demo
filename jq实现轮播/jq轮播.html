@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			ul{list-style: none;}
+			a{text-decoration: none;}
+			.box{
+				width: 500px; margin: 0 auto; height: 400px; position: relative;
+				overflow: hidden;
+			}
+			.list{width: 3000px; position: absolute; left: 0; top: 0;}
+			.list li{
+				width: 500px; height: 400px; float: left;
+			}
+			.list li img{width: 500px; height: 400px;}
+			.list li span{
+				position: relative; left: 45%; top: -270px;display: inline-block;
+				font-size: 80px; color: red;
+			}
+			.nav{position: absolute; left: 30%; top: 90%;}
+			.nav li{
+				float: left;width: 30px; height: 30px; border-radius: 50%; 
+				background: #EEEEEE; margin-left: 10px;text-align: center;
+				line-height: 30px;
+			}
+			.nav li a{color: #000;}
+			.nav li.active{background: deeppink;}
+			.btn{
+				width: 60px; height: 60px; background: #EEEEEE;position: absolute;
+				text-align: center; font-size: 60px; line-height: 60px;color: #999;
+				opacity: 0.5; 
+			}
+			.left{left: 0; top: 45%;}
+			.right{right: 0; top: 45%;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list">
+				<li><img src="img/1a.jpg"/><span>0</span></li>
+				<li><img src="img/2a.jpg"/><span>1</span></li>
+				<li><img src="img/3a.jpg"/><span>2</span></li>
+				<li><img src="img/4a.jpg"/><span>3</span></li>
+				<li><img src="img/5a.jpg"/><span>4</span></li>
+				<li><img src="img/1a.jpg"/><span>0</span></li>
+			</ul>
+			
+			<ul class="nav">
+				<li class="active"><a href="javascript:void(0);">0</a></li>
+				<li><a href="javascript:void(0);">1</a></li>
+				<li><a href="javascript:void(0);">2</a></li>
+				<li><a href="javascript:void(0);">3</a></li>
+				<li><a href="javascript:void(0);">4</a></li>
+			</ul>
+			
+			<div class="btn left">&lt;</div>
+			<div class="btn right">&gt;</div>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				var count = 0;
+				var timer = null;
+				var flag = true;
+				// 鼠标移入显示左右按钮
+				$(".box").mouseenter(function(){
+					$(".btn").stop(true,true).fadeIn();
+					clearInterval(timer);
+				});
+				// 鼠标移出显示左右按钮
+				$(".box").mouseleave(function(){
+					$(".btn").stop(true,true).fadeOut();
+					autoPlay();
+				});
+				
+				autoPlay();
+				// 自动轮播的封装
+				function autoPlay(){
+					timer = setInterval(function(){
+						count++;
+						if(count == $('.list li').length){
+							count = 1; // 会产生一个拉扯
+							$('.list').css('left',0); // 消除拉扯
+						};
+						$('.list').animate({'left':-500*count+'px'});
+						//实现最后追加的那张图的小圆点对应，因为最后追加的那张图为‘0’
+						if(count == $('.list li').length-1){
+							$('.nav li').eq(0).addClass('active').siblings().removeClass('active');
+						}
+						// 实现小圆点对应
+						$('.nav li').eq(count).addClass('active').siblings().removeClass('active');
+					},1000);
+				}
+				
+				// 点击右按钮
+				$('.right').click(function(){
+					if(flag){
+						flag = false;
+					    count++;
+						if(count == $('.list li').length){
+							count = 1; // 会产生一个拉扯
+							$('.list').css('left',0); // 消除拉扯
+						};
+						$('.list').animate({'left':-500*count+'px'},1000,function(){
+							// 方法回调
+							flag = true;
+						});
+						//实现最后追加的那张图的小圆点对应，因为最后追加的那张图为‘0’
+						if(count == $('.list li').length-1){
+							$('.nav li').eq(0).addClass('active').siblings().removeClass('active');
+						}
+						
+						// 实现小圆点对应
+						$('.nav li').eq(count).addClass('active').siblings().removeClass('active');
+					}		
+				})
+				// 点击左按钮
+				$('.left').click(function(){
+					if(flag){
+						flag = false;
+						count--;
+						if(count == -1){
+							count = $('.list li').length-2;
+							$('.list').css('left',-500*($('.list li').length-1)+'px')
+						}
+						$('.list').animate({left:-500*count+'px'},1000,function(){
+							flag = true;
+						});
+						$('.nav li').eq(count).addClass('active').siblings().removeClass('active');
+					}
+				})
+			
+				// 小圆点点击事件
+				$('.nav li').click(function(){
+					if(flag){
+						flag = false;
+						var indexNum = $(this).index();
+						//console.log(indexNum)
+						count = indexNum;
+						$('.list').animate({left:-500*indexNum+'px'},function(){
+							flag = true;
+						});
+						$(this).addClass('active').siblings().removeClass('active');
+					}
+				})
+			
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+		</style>
+	</head>
+	<body>
+		<!--<p><strong>姓名：邓超</strong></p>
+		<p><span>年龄：18</span></p>
+		<p>类型：帅气型</p>-->
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:"json/jsonFor.json",
+					async:true,
+					dataType:"json",
+					success:function(msg){
+						//console.log(msg);
+						for(var i=0;i<msg.length;i++){
+							var str = "<p><strong>姓名："+msg[i].name+"</strong></p>"+
+								      "<p><span>年龄："+msg[i].age+"</span></p>"+
+								      "<p>类型："+msg[i].style+"</p>";
+							$('body').append(str)
+						}
+					},error:function(err){
+						console.log(err);
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

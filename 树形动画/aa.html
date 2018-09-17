@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{list-style: none;}
+			ul li span{display: inline-block;width: 40px; height: 20px;}
+			ul li span.show{background: url(img/2.gif) no-repeat center center;}
+			ul li span.hide{background: url(img/1.gif) no-repeat center center;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<span></span><a href="javascript:void(0);">职业</a>
+				<ul>
+					<li>
+						<span></span><a href="javascript:void(0);">明星</a>
+						<ul>
+							<li>
+								<span></span><a href="javascript:void(0);">偶像派</a>
+								<ul>
+									<li>
+										<span></span><a href="javascript:void(0);">鹿晗</a>
+									</li>
+									<li>
+										<span></span><a href="javascript:void(0);">吴亦凡</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<span></span><a href="javascript:void(0);">实力派</a>
+							</li>
+							<li>
+								<span></span><a href="javascript:void(0);">灵魂派</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span></span><a href="javascript:void(0);">医生</a>
+						<ul>
+							<li>
+								<span></span><a href="javascript:void(0);">中医</a>
+							</li>
+							<li>
+								<span></span><a href="javascript:void(0);">西医</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span></span><a href="javascript:void(0);">老师</a>
+						<ul>
+							<li>
+								<span></span><a href="javascript:void(0);">小学教师</a>
+							</li>
+							<li>
+								<span></span><a href="javascript:void(0);">初中教师</a>
+							</li>
+							<li>
+								<span></span><a href="javascript:void(0);">高中教师</a>
+							</li>
+							<li>
+								<span></span><a href="javascript:void(0);">大学教师</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$('li span').addClass('show');
+			$('li').has('ul').children('span').addClass('hide');
+			$('li span').click(function(){
+				$(this).parent().has('ul').children('span').toggleClass('hide');
+				$(this).parent().has('ul').children('ul').slideToggle(300);
+				return false;
+			})
+		</script>
+	</body>
+</html>

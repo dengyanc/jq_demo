@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			ul{list-style: none;}
+			a{text-decoration: none; display: block;}
+			
+			ul li ul{display: none;}
+			
+			a{
+				background: red; width: 100px; text-align: center;
+				border: 1px solid #ccc; color: #fff;
+			}
+			ul li ul li{position: relative; }
+			.active{position: absolute; left: 100px;top: 0;}
+			
+			.active2{background: blue;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<a href="javascript:void(0);">中国</a>
+				<ul class="active">
+					<li><a href="javascript:void(0);">湖南</a></li>
+					<li>
+						<a href="javascript:void(0);">四川</a>
+						<ul class="active">
+							<li><a href="javascript:void(0);">成都</a></li>
+							<li>
+								<a href="javascript:void(0);">南充</a>
+								<ul class="active">
+									<li><a href="javascript:void(0);">蓬安</a></li>
+									<li><a href="javascript:void(0);">广元</a></li>
+									<li><a href="javascript:void(0);">岳池</a></li>
+								</ul>
+							</li>
+							<li><a href="javascript:void(0);">绵阳</a></li>
+							<li><a href="javascript:void(0);">德阳</a></li>
+						</ul>
+					</li>
+					<li><a href="javascript:void(0);">湖北</a></li>
+					<li><a href="javascript:void(0);">河南</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);">美国</a></li>
+			<li><a href="javascript:void(0);">美国</a></li>
+		</ul>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$('li').hover(function(){
+					// 鼠标移入
+					$(this).find('ul:first').show();
+				},function(){
+					// 鼠标移出
+					$(this).find('ul:first').hide();
+				});
+				$('li').has('ul').children('a').addClass('active2')
+			})
+		</script>
+	</body>
+</html>

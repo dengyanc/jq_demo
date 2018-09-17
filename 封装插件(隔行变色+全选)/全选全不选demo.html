@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选全不选反选demo</title>
+</head>
+<body>
+    <input type="checkbox"/>
+    <input type="checkbox"/>
+    <input type="checkbox"/>
+    <input type="checkbox"/>
+    <input type="checkbox"/><br/>
+    <button class="allChosen">全选</button>
+    <button class="allNoChosen">全不选</button>
+    <button class="reverseChosen">反选</button>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //全选
+            $(".allChosen").click(function(){
+                $("input[type='checkbox']").prop("checked",true);
+            })
+            //全不选
+            $(".allNoChosen").click(function(){
+                $("input[type='checkbox']").prop("checked",false);
+            });
+            //反选
+            $(".reverseChosen").click(function(){
+                $("input[type='checkbox']").each(function(){
+                    $(this).prop("checked",!$(this).prop("checked"));
+                })
+            })
+        })
+    </script>
+</body>
+</html>

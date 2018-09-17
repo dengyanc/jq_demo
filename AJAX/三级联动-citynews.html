@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			.box{width: 400px; height: 100px; margin: 0 auto;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:'get',
+					url:'json/citynews.json',
+					async:true,
+					dataType:'json',
+					success:function(msg){
+						console.log(msg);
+						msgList = msg;
+						var str = '';
+						$.each(msg.p, function(i,province) {
+							//console.log(i) // 下标
+							//console.log(province) // 省份
+							str += "<option>"+province+"</option>"
+						});
+						$('select').eq(0).append(str);
+					},error:function(err){
+						console.log(err);
+					}
+				})
+				
+				$('select').eq(0).change(function(){
+					var val = $(this).val();
+					var str = ''
+					$.each(msgList.c, function(i,province) {
+					    if(i == val){
+					    	$.each(province, function(a,city) {
+					    		str += "<option>"+city+"</option>"
+					    	});
+					    	$('select').eq(1).append(str);
+					    }
+				    });
+				})
+				
+				$('select').eq(1).change(function(){
+					var str = '';
+					var one = $('select').eq(0).val();
+					var two = $('select').eq(1).val();
+					var three = one+"-"+two;
+					$.each(msgList.a, function(i,province) {
+						if(i == three){
+							$.each(province, function(c,city) {
+								str += "<option>"+city+"</option>"
+							});
+							$('select').eq(2).append(str);
+						}
+					});
+				})
+				
+			})
+		</script>
+	</body>
+</html>

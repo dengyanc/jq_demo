@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>唯品会网站登录</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:void(0)"></a>
+			<span></span>
+		</header>
+		<main class="main">
+			<div class="form">
+				<p>如有账号，请登录</p>
+				<p><input type="text" id="name" placeholder="手机号/用户名/邮箱"/></p>
+				<p><input type="text" id="pwd" placeholder="密码"/></p>
+				<p><span id="login">登录</span></p>
+				<p><i><a href="javascript:void(0)">忘记密码？</a>|<a href="javascript:void(0)" class="register">免费注册</a></i><input type="checkbox" id="checkbox"/>记住密码</p>
+				<p>合作账号登录：<i><span></span><span></span><span></span><span></span></i></p>
+			</div>
+		</main>
+		<footer class="footer">
+			Copyright 2008-2017 vip.com，All Rights Reserved ICP证：粤 B2-20080329
+		</footer>
+		<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".register").click(function(){
+					location.href="register.html";
+				})
+				$("#login").click(function(){
+					var name = $("#name").val();
+					var pwd = $("#pwd").val();
+					if(name == "" && pwd == ""){
+						alert("账号密码不能为空");
+					}else if(name !="" && pwd == ""){
+						alert("密码不能为空");
+					}else if(name =="" && pwd != ""){
+						alert("账号不能为空");
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

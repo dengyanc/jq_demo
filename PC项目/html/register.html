@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>唯品会网站注册</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/register.css"/>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:void(0)"></a>
+			<span></span>
+		</header>
+		<main class="main">
+			<div class="form">
+				<p><span>欢迎注册</span><i>已注册<a href="javascript:void(0)" class="login">直接登录</a></i></p>
+				<p><input type="text" id="name" placeholder="请输入手机号"/></p>
+				<p><input type="text" id="pwd" placeholder="密码由6-12位字母，数字和符号组成"/></p>
+				<p><input type="text" id="pwded" placeholder="请再次输入上面的密码"/></p>
+				<p><input type="text" id="node" placeholder="短信验证码"/><span id="nodes">获取验证码</span></p>
+				<p><span id="register">立即注册</span><a id="register_a" href="javascript:void(0)">通过邮箱注册&gt;&gt;</a></p>
+				<p><input type="checkbox" id="checkbox"/>我已阅读并接受<a href="javascript:void(0)">唯品会服务条款</a></p>
+			</div>
+		</main>
+		<footer class="footer">
+			Copyright 2008-2017 vip.com，All Rights Reserved ICP证：粤 B2-20080329
+		</footer>
+		<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".login").click(function(){
+					location.href="login.html";
+				})
+				$("#name").blur(function(){
+					var name = $("#name").val();
+					var reg = /^1[3|4|5|7|8][0-9]{9}$/;
+					if(!reg.test(name)){
+						alert("请输入正确的手机号");
+					}
+				})
+				$("#pwd").blur(function(){
+					var pwd = $("#pwd").val();
+					var reg = /^\w{6,12}$/;
+					if(!reg.test(pwd)){
+						alert("密码必须6-12位字母，数字和符号组成")
+					}
+				})
+				$("#pwded").blur(function(){
+					var pwd = $("#pwd").val();
+					var pwded = $("#pwded").val();
+					if(pwded != pwd){
+						alert("确认密码不一致");
+					}
+				})
+				//调短息接口
+				$("#nodes").click(function(){
+					var tel = $("#name").val();
+					$(this).html("正在发送");
+					$.ajax({
+						type:"get",
+						url:"http://api.sms.cn/sms/?ac=send&uid=guoyueshuai&pwd=31b7cf0b1708bb3ec7e88b						10c5441470&template=402258&mobile="+tel +"&content={"code":"你好啊"}"
+					});
+					
+				})
+			})
+		</script>
+	</body>
+</html>

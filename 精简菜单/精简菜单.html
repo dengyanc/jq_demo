@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/common/base.css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.wrap ul {
+			margin: 0 auto;
+			width: 460px;
+			overflow: hidden;
+		}
+
+		.wrap ul li {
+			width: 150px;
+			float: left;
+			height: 30px;
+		}
+
+		.box {
+			margin: 10px auto;
+			width: 200px;
+			border: 1px solid #ccc;
+			line-height: 30px;
+			text-align: center;
+			background: url(img/down.gif) no-repeat 34px center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<ul>
+			<li>
+				<a href="javascript:void(0);">华为</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">三星</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">戴尔</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">联想</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">苹果</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">小米</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">红富士</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">香水</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">面膜</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">戒指</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">达利园</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">百度</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">乐视</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">手镯</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">玉佩</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">皮包</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">项链</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">小说</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">晨光</a>
+				<i>(1000)</i>
+			</li>
+			<li>
+				<a href="javascript:void(0);">其他品牌</a>
+				<i>(1000)</i>
+			</li>
+		</ul>
+
+		<div class="box">显示更多品牌</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			var aLi = $("ul li:gt(5):not(:last)");
+			aLi.hide();
+			$('.box').click(function () {
+				if (aLi.is(":visible")) {  //:visible 选择器选取每个当前是可见的元素。
+					aLi.hide();
+					$('.box').css("background", "url(img/down.gif) no-repeat 34px center").text("全部品牌");
+					$('ul li a').filter(":contains('香水'),:contains('玉佩')").css('color', 'blue');
+				} else {
+					aLi.show();
+					$('.box').css("background", "url(img/up.gif) no-repeat 34px center").text("精选品牌");
+					$('ul li a').filter(":contains('香水'),:contains('玉佩')").css('color', 'green');
+				}
+			})
+		})
+
+	</script>
+</body>
+
+</html>

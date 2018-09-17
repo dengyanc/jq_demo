@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>进度条</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			*{
+				text-align: center;
+			}
+			.box{
+				width: 500px;
+				height: 50px;
+				border: 1px solid #000;
+				margin: 0 auto;
+			}
+			.box #jin{
+				display: block;
+				height: 50px;
+				background: #f00;
+				width: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span id="jin"></span>
+		</div>
+		<button type="button">开始</button>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var timer = null;
+				var num = 0;
+				var flagWidth = 0;
+				var flag = true;
+				$("button").click(function(){
+					if(flagWidth>=500&&num>=100){
+						flagWidth = 0;
+						num = 0;
+					}
+					if(flag){
+						timer = setInterval(auto,30);
+					}
+				})
+				function auto(){
+					flag = false;
+					num++;
+					flagWidth += 5;
+					$("#jin").css("width",flagWidth+"px");
+					$("#jin").text(num+"%");
+					if(flagWidth>=500){
+						clearInterval(timer);
+						flag = true;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

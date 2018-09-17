@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			.box{width: 400px; height: 100px; margin: 0 auto;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:"json/json.json",
+					async:true,
+					dataType:"json",
+					success:function(msg){
+						msgList = msg; // 将所有的msg存入msgList里
+						console.log(msg);
+						var str = "<option>--请选择--</option>";
+						$.each(msg, function(i,province) {  
+							//console.log(i)  // i 指的是下标
+							//console.log(province)  
+							//province 指的是把msg的值赋值给province
+							str += "<option>"+province.p+"</option>"
+						});
+						$('select').eq(0).html(str);  //显示下标为0的select框
+					},error:function(err){
+						console.log(err);
+					}
+				})
+				
+				$('select').eq(0).change(function(){
+					var val = $(this).val(); //获取下标为0的值
+					//console.log(val);
+					var str = "<option>--请选择--</option>";
+					$(this).nextAll().html("<option>--请选择--</option>");
+					$.each(msgList,function(i,province){
+						if(province.p == val){
+							$.each(province.c, function(c,city) {
+								str += "<option>"+city.ct+"</option>";
+							});
+							$('select').eq(1).html(str); //显示下标为1的select框
+						}
+					});
+				});
+				
+				$('select').eq(1).change(function(){
+					var val = $(this).val(); //获取下标为1的值
+					//console.log(val)
+					var str = "<option>--请选择--</option>";
+					$.each(msgList,function(i,province){ //循环下标为0的select框
+						$.each(province.c,function(i,city){ //循环下标为1的select框
+							if(city.ct == val && city.d != undefined){
+								$.each(city.d, function(i,contory) {
+									//循环下标为2的select框
+									str += "<option>"+contory.dt+"</option>";
+								});
+								$('select').eq(2).html(str); //显示下标为2的select框
+							}
+						});
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

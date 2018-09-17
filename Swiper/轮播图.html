@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="swiper/css/swiper.min.css"/>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				display: block;
+				width: 400px;
+				height: 225px;
+			}
+			.swiper-container{
+				width: 400px;
+				height: 225px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="img/1.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="img/2.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="img/3.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="img/4a.jpg"/>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
+		
+		<script src="js/jquery-1.7.2.min.js"></script>
+	    <script src="swiper/js/swiper.jquery.min.js"></script>
+		<script type="text/javascript">
+			var mySwiper = new Swiper ('.swiper-container', {
+				autoplay:2000,
+			    loop: true,
+			    pagination:".swiper-pagination",
+			    nextButton:".swiper-button-next",
+			    prevButton:".swiper-button-prev"
+			});  
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,123 @@
+* {
+  background: #fdfbfe;
+}
+body,
+html {
+  min-width: 1000px;
+}
+.header {
+  width: 1000px;
+  height: 93px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.header a {
+  display: block;
+  height: 73px;
+  width: 400px;
+  background: url(../img/register/normalLogin_sprite.png) no-repeat 0 0;
+  float: left;
+}
+.header span {
+  display: block;
+  width: 445px;
+  height: 28px;
+  background: url(../img/register/sprite.png) no-repeat left bottom;
+  float: right;
+  margin-top: 25px;
+}
+.main {
+  width: 1000px;
+  height: 450px;
+  background: url(../img/register/14906736174487.jpg) no-repeat left top;
+  margin: 0 auto;
+}
+.main .form {
+  width: 344px;
+  float: right;
+  padding: 40px 30px 0 0;
+}
+.main .form p {
+  width: 270px;
+  margin-bottom: 24px;
+  height: 32px;
+}
+.main .form p input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid #b2b2b2;
+  padding-left: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.main .form p #node {
+  width: 48%;
+  margin-right: 2%;
+  float: left;
+}
+.main .form p #nodes {
+  display: block;
+  height: 100%;
+  width: 48%;
+  border-radius: 7px;
+  background: #d0d0d0;
+  float: right;
+  text-align: center;
+  line-height: 30px;
+  color: #a09999;
+  cursor: pointer;
+}
+.main .form p:first-child {
+  color: #4c4c4c;
+  font-size: 12px;
+  height: 16px;
+}
+.main .form p:first-child span {
+  float: left;
+}
+.main .form p:first-child i {
+  float: right;
+}
+.main .form p:first-child i a {
+  color: #f10180;
+}
+.main .form p:nth-child(6) {
+  height: 42px;
+  margin-bottom: 40px;
+  text-align: right;
+  line-height: 60px;
+  color: #1d94d1;
+}
+.main .form p:nth-child(6) #register {
+  display: block;
+  width: 48%;
+  height: 42px;
+  background: #f10180;
+  color: #fff;
+  float: left;
+  text-align: center;
+  line-height: 42px;
+  font-size: 16px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.main .form p:last-child {
+  width: 344px;
+  margin-bottom: 0;
+  height: auto;
+}
+.main .form p:last-child input {
+  width: auto;
+  height: auto;
+  margin-right: 5px;
+}
+.footer {
+  width: 1000px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  margin: 0 auto;
+}

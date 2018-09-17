@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行变色加全选</title>
+    <style>
+        *{padding:0;margin:0;}
+        td,th{width: 70px;height:30px;text-align: center}
+        .even{background: #fe96c9;}/*偶数行*/
+        .odd{background: #CCCCCC;}/*奇数行*/
+        .selected{background: #ff0;}
+    </style>
+</head>
+<body>
+    <table border="1" cellspacing="0">
+        <thead>
+            <tr><th><input type="checkbox"/></th><th>姓名</th><th>年龄</th><th>性格</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><input type="checkbox"/></td><td>桑伟峰</td><td>18</td><td>高富帅</td></tr>
+            <tr><td><input type="checkbox"/></td><td>屈自强</td><td>18</td><td>高富逗</td></tr>
+            <tr><td><input type="checkbox"/></td><td>刘文龙</td><td>18</td><td>学习委员</td>
+            <tr><td><input type="checkbox"/></td><td>刘文祥</td><td>18</td><td>高富帅</td></tr>
+            <tr><td><input type="checkbox"/></td><td>王俊颖</td><td>18</td><td>白富美</td></tr>
+        </tbody>
+    </table>
+    <button>反选</button>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            $("tbody tr:odd").addClass("odd");//奇数行
+            $("tbody tr:even").addClass("even");//偶数行
+            //给第一个input框添加点击事件
+            $("input:first").click(function(){
+                $("input").prop("checked",$(this).prop("checked"));//全选和全不选
+                console.log($(this).prop("checked"));
+                if($(this).prop("checked")){
+                    //如果当前点击的input框已被选中,设置颜色
+                    $("input").parent().parent().addClass("selected");
+                }else{
+                    $("input").parent().parent().removeClass("selected");
+                }
+            });
+            //给所有的input按钮添加selected样式
+            $("input").click(function(event){
+                //event.preventDefault();
+                event.stopPropagation();
+                if($(this).prop("checked")){
+                    $(this).parent().parent().addClass("selected");
+                }else{
+                    $(this).parent().parent().removeClass("selected");
+                }
+                        /*return false;*/
+            });
+
+            //给所有的tr添加selected样式
+            $("tr").click(function(){
+                console.log(2)
+                if($(this).find("input").prop("checked")){
+                    $(this).removeClass("selected");
+                    $(this).find("input").prop("checked",false);
+                }else{
+                    $(this).addClass("selected");
+                    $(this).find("input").prop("checked",true);
+                }
+            })
+            //反选事件的添加
+            $("button").click(function(){
+                $("input").each(function(i){
+                    if(i!=0){
+                        $("input").eq(i).prop("checked",!$("input").eq(i).prop('checked'))
+                    }
+                    if($("input").eq(i).prop("checked")){
+                        $("input").eq(i).parent().parent().addClass("selected");
+                    }else{
+                        $("input").eq(i).parent().parent().removeClass("selected");
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

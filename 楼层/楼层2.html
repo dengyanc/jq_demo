@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			position: relative;
+		}
+
+		ul {
+			list-style: none;
+			position: fixed;
+			left: 20px;
+			top: 100px;
+			height: 370px;
+			display: none;
+			width: 50px;
+			border: 1px solid #999;
+		}
+
+		ul li {
+			width: 50px;
+			line-height: 30px;
+			text-align: center;
+			border-bottom: 1px dashed #999;
+		}
+
+		ul li:hover,
+		ul li.active {
+			background: red;
+			color: #fff;
+		}
+
+		ul li.last {
+			border-bottom: none;
+		}
+
+		.box {
+			width: 1000px;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+
+		.box div {
+			height: 600px;
+			width: 1000px;
+			text-align: center;
+			line-height: 600px;
+			color: #fff;
+			font-size: 60px;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>1F</li>
+		<li>2F</li>
+		<li>3F</li>
+		<li>4F</li>
+		<li>5F</li>
+		<li>6F</li>
+		<li>7F</li>
+		<li>8F</li>
+		<li>9F</li>
+		<li>10F</li>
+		<li>11F</li>
+		<li class="last">Top</li>
+	</ul>
+
+	<div class="box">
+		<div style="background: red;">家电</div>
+		<div style="background: blueviolet;">服装店</div>
+		<div style="background: deepskyblue;">美食城</div>
+		<div style="background: yellow;">游乐场</div>
+		<div style="background: orange;">玩具店</div>
+		<div style="background: deeppink;">画展</div>
+		<div style="background: #ccc;">茶楼</div>
+		<div style="background: blue;">麻将馆</div>
+		<div style="background: brown;">图书</div>
+		<div style="background: #00AAFF;">化妆品</div>
+		<div style="background: pink;">电影院</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			var mark = 1;
+			// 滚动事件
+			$(window).scroll(function () {
+				if ($(document).scrollTop() > 400) {
+					// 在一定长度显示楼层
+					$('ul').css('display', 'block');
+				} else {
+					$('ul').css('display', 'none');
+				}
+
+				if (mark == 1) {
+					var oDiv = $('.box div'); //获取每层的div
+					var scrollHeight = $(window).scrollTop();//获取滚动条长度
+					$.each(oDiv, function () { //遍历div
+						var indexNum = $(this).index(); //定义下标
+						//console.log(indexNum)
+						// 获取到每个div距离顶部的距离+自身高度的一半
+						var divHeight = oDiv.eq(indexNum).offset().top + $(this).height() / 2;
+						//如果滚动条高度小于div距离顶部的高度时
+						if (divHeight > scrollHeight) {
+							//获取下标对应div的内容
+							var divText = $('.box div').eq(indexNum).text();
+							//console.log(divText)
+							//把所有选中的li的内容变成自己的下标+1+F
+							$('ul li.active').text($('ul li.active').index() + 1 + 'F');
+							//当li下边等于遍历div的下标时，添加默认选中类名，并且内容变成div的内容，其他兄弟元素删除默认类名
+							$("ul li").eq(indexNum).text(divText).addClass("active").siblings().removeClass("active");
+							return false;
+						}
+					})
+				}
+			});
+
+			// click事件
+			$('ul li').not('.last').click(function () {
+				if (mark == 1) {
+					mark = 2;
+					// 获取当前div的内容
+					var txt = $('.box div').eq($(this).index()).text();
+					$(this).text(txt);
+					//把所有选中的li的内容变成自己的下标+1+F
+					$('ul li.active').text($('ul li.active').index() + 1 + 'F');
+					$(this).addClass("active").siblings().removeClass("active");
+					//点击时对应楼层
+					var newHeight = $('.box div').eq($(this).index()).offset().top;
+					$("body,html").animate({ scrollTop: newHeight }, 1000, function () {
+						mark = 1;
+					});
+				}
+			});
+			// 返回顶部
+			$('ul li.last').click(function () {
+				if (mark == 1) {
+					mark = 2;
+					//给html和body一个动画
+					$("body,html").animate({ scrollTop: 0 }, 1000, function () {
+						mark = 1;
+					});
+				}
+			});
+
+			// hover事件
+			$('ul li').not('.last').hover(function () {
+				var txt = $('.box div').eq($(this).index()).text();
+				$(this).text(txt);
+			}, function () {
+				// 判断是否含有active
+				if ($(this).hasClass('active')) {
+
+				} else {
+					$(this).text($(this).index() + 1 + "F");
+				}
+			});
+		})
+	</script>
+</body>
+
+</html>

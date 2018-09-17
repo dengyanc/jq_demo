@@ -1,0 +1,187 @@
+body,
+html {
+  min-width: 1000px;
+}
+.header1 {
+  width: 100%;
+  border-bottom: 2px solid #f10180;
+}
+.header1 .header {
+  width: 1000px;
+  height: 93px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.header1 .header a {
+  display: block;
+  height: 73px;
+  width: 400px;
+  background: url(../img/register/normalLogin_sprite.png) no-repeat 0 0;
+  float: left;
+}
+.header1 .header span {
+  display: block;
+  width: 445px;
+  height: 28px;
+  background: url(../img/register/sprite.png) no-repeat left bottom;
+  float: right;
+  margin-top: 25px;
+}
+.add {
+  width: 1000px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+  position: relative;
+}
+.add h3 {
+  height: 50px;
+  width: 500px;
+  line-height: 50px;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+.add table {
+  width: 500px;
+  height: 350px;
+}
+.add table tr td .text {
+  width: 45%;
+  height: 60%;
+}
+.add table tr td .addre {
+  width: 90%;
+  height: 60%;
+}
+.add table tr td a {
+  height: 60%;
+  width: 30%;
+  display: block;
+  background: #f10180;
+  border-radius: 5px;
+  line-height: 44px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+.add table tr td select {
+  width: 29%;
+  height: 60%;
+  margin-right: 1.5%;
+}
+.add table tr td select:last-child {
+  margin-right: 0%;
+}
+.add table tr td:first-child {
+  width: 18%;
+  text-align: right;
+}
+.add table tr td:nth-child(2) {
+  width: 2%;
+}
+.add table tr td:nth-child(3) {
+  width: 80%;
+}
+.add .zhonxin {
+  width: 500px;
+  height: 400px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.add .zhonxin h3 {
+  height: 50px;
+  width: 500px;
+  line-height: 50px;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+.add .zhonxin .zhonxin1 {
+  width: 500px;
+  height: 350px;
+}
+.add .zhonxin .zhonxin1 .z_ctt {
+  margin: 12.5px 10px;
+  height: 150px;
+  width: 100px;
+  float: left;
+  cursor: pointer;
+}
+.add .zhonxin .zhonxin1 .z_ctt img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+footer {
+  width: 100%;
+  height: 240px;
+  background: #fcfcfc;
+  border-top: 1px solid #ebebeb;
+  margin-top: 50px;
+}
+footer .footer {
+  width: 1000px;
+  height: 140px;
+  margin: 0 auto;
+}
+footer .footer .footer_one {
+  margin: 0 auto;
+  width: 1000px;
+  height: 140px;
+}
+footer .footer .footer_one ul {
+  margin-top: 10px;
+  float: left;
+  padding-right: 115px;
+}
+footer .footer .footer_one ul .first {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+footer .footer .footer_one ul li {
+  cursor: pointer;
+  font-size: 12px;
+  height: 22px;
+}
+footer .footer .footer_one ul:last-child {
+  padding-right: 0;
+}
+footer .foot {
+  margin: 0 auto;
+  text-align: center;
+  line-height: 24px;
+  width: 1000px;
+  height: 93px;
+}
+footer .foot .foot_one {
+  padding-top: 20px;
+}
+footer .foot .foot_one p:last-child {
+  height: 40px;
+  line-height: 40px;
+}
+footer .foot .foot_one p:last-child a {
+  color: #999;
+  font-size: 12px;
+}
+footer .foot .foot_one p:last-child span {
+  padding: 0 7px 0 7px;
+}
+footer .foot .foot_one p:first-child {
+  background: #f10180;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+}
+footer .foot .foot_one p:first-child a {
+  color: #fff;
+  background: #f10180;
+}
+footer .foot .foot_one p:first-child span {
+  padding: 0 7px 0 7px;
+  background: #f10180;
+}

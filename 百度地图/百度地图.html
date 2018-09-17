@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cbKzLcfqLd3FViul7cmZfshbFKOXB3IE"></script>
+		<title>地址解析</title>
+		<style type="text/css">
+			body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+			*{margin: 0; padding: 0;}
+			.box{width: 500px; height: 40px; margin: 0 auto;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<button>查询</button>
+		</div>
+		<div id="allmap"></div>
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:'get',
+					url:'json/citynews.json',
+					async:true,
+					dataType:'json',
+					success:function(msg){
+						console.log(msg);
+						msgList = msg;
+						var str = '';
+						$.each(msg.p, function(i,province) {
+							//console.log(i) // 下标
+							//console.log(province) // 省份
+							str += "<option>"+province+"</option>"
+						});
+						$('select').eq(0).append(str);
+					},error:function(err){
+						console.log(err);
+					}
+				})
+				
+				$('select').eq(0).change(function(){
+					var val = $(this).val();
+					var str = ''
+					$.each(msgList.c, function(i,province) {
+					    if(i == val){
+					    	$.each(province, function(a,city) {
+					    		str += "<option>"+city+"</option>"
+					    	});
+					    	$('select').eq(1).append(str);
+					    }
+				    });
+				})
+				
+				$('select').eq(1).change(function(){
+					var str = '';
+					var one = $('select').eq(0).val();
+					var two = $('select').eq(1).val();
+					var three = one+"-"+two;
+					$.each(msgList.a, function(i,province) {
+						if(i == three){
+							$.each(province, function(c,city) {
+								str += "<option>"+city+"</option>"
+							});
+							$('select').eq(2).append(str);
+						}
+					});
+				})
+				
+				$("button").click(function(){
+					var myCity=$("select").eq(0).val()+$("select").eq(1).val()+$("select").eq(2).val()
+					console.log(myCity)
+					var map=new BMap.Map("allmap")
+					map.centerAndZoom(myCity,18)
+					
+//					var myCity=$("select").eq(0).val()+$("select").eq(1).val()+$("select").eq(2).val()
+//					var map = new BMap.Map("allmap");
+//					var point = new BMap.Point(116.331398,39.897445);
+//					map.centerAndZoom(point,12);
+//					// 创建地址解析器实例
+//					var myGeo = new BMap.Geocoder();
+//					// 将地址解析结果显示在地图上,并调整地图视野
+//					myGeo.getPoint(myCity, function(point){
+//						if (point) {
+//							map.centerAndZoom(point, 16);
+//							map.addOverlay(new BMap.Marker(point));
+//						}else{
+//							alert("您选择地址没有解析到结果!");
+//						}
+//					}, "北京市");
+
+				
+				
+			
+//				var myCity=$("select").eq(0).val()+$("select").eq(1).val()+$("select").eq(2).val()
+//				var map = new BMap.Map("allmap");            
+//				map.centerAndZoom(myCity,12);           
+//				//单击获取点击的经纬度
+//				map.addEventListener("click",function(e){
+//					alert(e.point.lng + "," + e.point.lat);
+//				});
+				
+				})
+			})
+		</script>
+	</body>
+</html>

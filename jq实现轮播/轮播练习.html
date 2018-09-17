@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			ul{list-style: none;}
+			a{text-decoration: none; color: #000;}
+			.box{width: 500px; height: 400px;position: relative; margin: 0 auto; overflow: hidden;}
+			.list{position: absolute; left: 0; top: 0; width: 3000px; height: 400px;}
+			.list li{width: 500px; height: 400px; float: left; }
+			.list li img{width: 500px; height: 400px;}
+			.list li span{
+				position: relative; left: 45%; top: -65%; font-size: 80px; color: red;
+			}
+			.nav{position: absolute; left: 30%; top: 90%; width: 500px;}
+			.nav li{float: left; width: 30px; height: 30px; border-radius: 50%; 
+				background: rgba(255,255,255,0.5); margin-left: 10px; 
+				text-align: center; line-height: 30px;
+			}
+			.nav li.active{background: deeppink;}
+			.btn{
+				width: 70px; height: 70px; background: rgba(255,255,255,0.5);
+				top: 40%; text-align: center; line-height: 70px; color: #EEEEEE; 
+				font-size:60px; position: absolute; display: none;
+			}
+			.left{left: 0;}
+			.right{right: 0;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list">
+				<li class="active"><img src="img/1a.jpg"/><span>0</span></li>
+				<li><img src="img/2a.jpg"/><span>1</span></li>
+				<li><img src="img/3a.jpg"/><span>2</span></li>
+				<li><img src="img/4a.jpg"/><span>3</span></li>
+				<li><img src="img/5a.jpg"/><span>4</span></li>
+				<li><img src="img/1a.jpg"/><span>0</span></li>
+			</ul>
+			
+			<ul class="nav">
+				<li class="active"><a href="javascript:void(0);">0</a></li>
+				<li><a href="javascript:void(0);">1</a></li>
+				<li><a href="javascript:void(0);">2</a></li>
+				<li><a href="javascript:void(0);">3</a></li>
+				<li><a href="javascript:void(0);">4</a></li>
+			</ul>
+			
+			<div class="btn left">&lt;</div>
+			<div class="btn right">&gt;</div>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				var count = 0;
+				var timer = null;
+				var flag = true;
+				$('.box').mouseenter(function(){
+					$('.btn').stop(true,true).fadeIn();
+					clearInterval(timer);
+				});
+				$('.box').mouseleave(function(){
+					$('.btn').stop(true,true).fadeOut();
+					autoPlay()
+				})
+				
+				autoPlay()
+				function autoPlay(){
+					timer = setInterval(function(){
+						Public()
+					},1000)
+				}
+				
+				// right
+				$('.right').click(function(){
+					Public()
+				})
+				
+				// left
+				$('.left').click(function(){
+					count--;
+					console.log(count);
+					if(count == -1){
+						count = $('.list li').length - 2;
+						$('.list').css('left',-500*($('.list li').length-1)+'px')
+					}
+					$('.list').stop(true,true).animate({left:-500*count+'px'});
+					$('.nav li').eq(count).addClass('active').siblings().removeClass('active');
+				})
+				
+				$('.nav li').click(function(){
+					var indexNum = $(this).index();
+					count = indexNum
+					$('.list').stop(true,true).animate({left:-500*indexNum+'px'});
+					$(this).addClass('active').siblings().removeClass('active');
+				})
+				
+				function Public(){
+				    count++;
+				    //console.log(count);
+				    if(count == $('.list li').length){
+				   		count = 1;
+				   		$('.list').css('left',0)
+				    }
+				    $('.list').stop(true,true).animate({left:-500*count+'px'});
+				    if(count == $('.list li').length-1){
+				    	$('.nav li').eq(0).addClass('active').siblings().removeClass('active');
+				    }
+				    $('.nav li').eq(count).addClass('active').siblings().removeClass('active');
+				}
+				
+			})                   
+			
+		</script>
+	</body>
+</html>

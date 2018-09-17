@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			ul{list-style: none; margin-left: 200px; height: 40px;}
+			ul li{
+				float: left; width: 200px; height: 40px; text-align: center;
+				line-height: 40px; border: 1px solid #ccc;
+			}
+			ul li.active{background: pink;}
+			.list li{
+				width: 605px; height: 40px; line-height: 40px;
+				display: none; border: 1px solid red; margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="nav" id="nav">
+			<li class="active">王洋</li>
+			<li>陈震</li>
+			<li>武云斌</li>
+		</ul>
+		
+		<ul class="list" id="list">
+			<li style="display: block;">我是王洋</li>
+			<li>我是陈震</li>
+			<li>我是武云斌</li>
+		</ul>
+		
+		<script src="js/jquery.js"></script>
+	   <script src="js/tab.js"></script>
+		<script>
+//			$('ul li').click(function(){
+//				$(this).addClass('active').siblings().removeClass('active');
+//				$('.list li').eq($(this).index()).show().siblings().hide()
+//			})
+			
+			tab('nav','list')
+
+		</script>
+	</body>
+</html>

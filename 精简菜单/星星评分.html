@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>星星评分</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			ul{
+				width: 200px;
+				height: 28px;
+				float: left;
+			}
+			ul li{
+				width: 28px;
+				height: 28px;
+				float: left;
+				background: url(img/start.gif) no-repeat 0 0;
+			}
+			span{
+				display: block;
+				width: 28px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				font-size: 14px;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<span></span>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var a= ["很差","差","一般","好","很好"];
+				var index = null;
+				$("ul li").hover(function(){
+					$(this).css("background-position","0 -28px").prevAll().css("background-position","0 -28px");
+					$(this).nextAll().css("background-position","0 0");
+					$("span").html(a[$(this).index()]);
+				},function(){
+					if(index == null){
+						$("li").css("background-position","0 0").prevAll().css("background-position","0 0");
+						$("li").nextAll().css("background-position","0 0");
+						$("span").html("");
+					}else{
+						$("li").eq(index).css("background-position","0 -28px").prevAll().css("background-position","0 -28px");
+						$("li").eq(index).nextAll().css("background-position","0 0");
+						$("span").html(a[$("ul li").eq(index)]);
+					}
+				})
+				$("ul li").click(function(){
+					index = $(this).index();
+					$(this).css("background-position","0 -28px").prevAll().css("background-position","0 -28px");
+					$(this).nextAll().css("background-position","0 0");
+					$("span").html(a[$(this).index()]);
+				})
+			})
+		</script>
+	</body>
+</html>

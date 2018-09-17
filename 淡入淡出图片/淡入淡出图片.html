@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		.box {
+			margin: 0 auto;
+			width: 650px;
+			overflow: hidden;
+		}
+
+		.list {
+			position: relative;
+			float: left;
+		}
+
+		.list li {
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.list li:first-child {
+			display: block;
+		}
+
+		.list img {
+			width: 500px;
+			height: 400px;
+		}
+
+		.nav {
+			float: right;
+			width: 100px;
+			height: 400px;
+			margin-left: 40px;
+		}
+
+		.nav li {
+			width: 70px;
+			height: 70px;
+			margin-bottom: 10px;
+		}
+
+		.nav li img {
+			width: 70px;
+			height: 70px;
+		}
+
+		.nav li.active {
+			border: 2px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<ul class="list">
+			<li>
+				<img src="img/1a.jpg" />
+			</li>
+			<li>
+				<img src="img/2a.jpg" />
+			</li>
+			<li>
+				<img src="img/3a.jpg" />
+			</li>
+			<li>
+				<img src="img/4a.jpg" />
+			</li>
+			<li>
+				<img src="img/5a.jpg" />
+			</li>
+		</ul>
+
+		<ul class="nav">
+			<li class="active">
+				<img src="img/1a.jpg" />
+			</li>
+			<li>
+				<img src="img/2a.jpg" />
+			</li>
+			<li>
+				<img src="img/3a.jpg" />
+			</li>
+			<li>
+				<img src="img/4a.jpg" />
+			</li>
+			<li>
+				<img src="img/5a.jpg" />
+			</li>
+		</ul>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$('.nav li').click(function () {
+			$(this).addClass('active').siblings().removeClass('active');
+			$('.list li').eq($(this).index()).fadeIn().siblings().fadeOut();
+			i = $(this).index();
+		});
+		$('.box').hover(function () {
+			clearInterval(timer);
+		}, function () {
+			timer = setInterval("move2()", 1000);
+		});
+
+		var i = 0;
+		var timer = setInterval("move2()", 1000);
+		function move2() {
+			i++;
+			if (i < 4) {
+				//console.log(i)
+				$('.nav li').eq(i).addClass('active').siblings().removeClass('active');
+			} else {
+				i = i - 5;
+				$('.nav li').eq(i).addClass('active').siblings().removeClass('active');
+			}
+			$('.list li').fadeOut();
+			$('.list li').eq(i).fadeIn();
+		}
+
+	</script>
+</body>
+
+</html>

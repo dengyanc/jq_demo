@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简单的变色封装插件</title>
+	</head>
+	<body>
+		<ul>
+			<li>啊实打实大师大师大厦阿斯达</li>
+			<li>啊实打实大师大师大厦阿斯达</li>
+			<li>啊实打实大师大师大厦阿斯达</li>
+			<li>啊实打实大师大师大厦阿斯达</li>
+			<li>啊实打实大师大师大厦阿斯达</li>
+		</ul>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			(function($){
+				$.fn.extend({
+					"setting":function(value){
+						value=$.extend({
+							txtColor:"yellow"
+						},value);
+						//插件的内部this指向的是jQuery对象，而非普通的DOM对象
+						this.css("color",value.txtColor);
+						return this;//返回this,使方法可链
+					}
+				})
+			})(jQuery);
+			$("ul").setting({txtColor:"red"});
+			/*$("ul").setting().             //应用插件
+			find("li").css("color","red");//可以链式操作*/
+		</script>
+	</body>
+
+</html>

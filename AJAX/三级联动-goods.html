@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			
+			td{
+				padding: 2px 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bb">
+			<table border="1">
+				<thead>
+					<tr>
+						<td></td>
+						<td>品牌</td>
+						<td>品牌名称</td>
+						<td>价格</td>
+						<td>颜色</td>
+						<td>数量</td>
+						<td>标配</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		
+		<script src="../AJAX/js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:'get',
+					url:'json/goods.json',
+					async:true,
+					dataType:'json',
+					success:function(gmsg){
+						gmsgList = gmsg;
+						console.log(gmsg);
+						var str = '';
+						var num = 0;
+						$.each(gmsg, function(i,pin) {
+							//console.log(pin);
+							$.each(pin.goodsdata, function(c,goods) {
+								//console.log(goods)
+								str += "<tr><td><input type='checkbox' class='check'/></td>"+
+										"<td>"+pin.goodsname+"</td>"+
+										"<td>"+goods.name+"</td>"+
+										"<td>"+goods.money+"</td>"+
+										"<td>"+"<input type='radio'/>"+goods.colors[0]+"<input type='radio'/>"+goods.colors[1]+"<input type='radio'/>"+goods.colors[2]+"</td>"+
+										"<td>"+goods.stock+"</td>"+
+										"<td>"+goods.suit+"</td></tr>"
+							});
+							$('tbody').html(str)
+						});
+					},error:function(err){
+						console.log(err)
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

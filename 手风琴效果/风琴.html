@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		ul{list-style: none;}
+		a{text-decoration: none;}
+		.wrap{margin: 30px auto;width: 300px; background: #000;}
+		.title{
+			display: block; width: 240px; line-height: 35px; background: #666;
+			margin: 0 auto;color: #fff;text-align: center;
+		}
+		.active{background: blue;}
+		.newList{padding: 10px 0;}
+		.newBox{display: none;}
+		.newBox li{color: #fff; text-align: center;line-height: 30px;}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li class="newList">
+				<a href="javascript:void(0);" class="title active">魅力派</a>
+				<ul class="newBox" style="display: block;">
+					<li>鹿晗</li>
+					<li>吴亦凡</li>
+					<li>邓超</li>
+				</ul>
+			</li>
+			
+			<li class="newList">
+				<a href="javascript:void(0);" class="title">魅力派</a>
+				<ul class="newBox">
+					<li>鹿晗</li>
+					<li>吴亦凡</li>
+					<li>邓超</li>
+				</ul>
+			</li>
+			
+			<li class="newList">
+				<a href="javascript:void(0);" class="title">魅力派</a>
+				<ul class="newBox">
+					<li>鹿晗</li>
+					<li>吴亦凡</li>
+					<li>邓超</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	
+	<script src="js/jquery.js"></script>
+	<script>
+		$('.title').click(function(){
+			$(this).addClass('active').next().show().parent().siblings().children('a').removeClass('active').next().hide();
+		}); 
+	</script>
+</body>
+</html>

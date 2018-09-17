@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		li {
+			list-style: none;
+			color: #fff;
+			text-align: center;
+			line-height: 35px;
+		}
+
+		.wrap {
+			width: 300px;
+			margin: 40px auto;
+			background: #000;
+		}
+
+		.title {
+			width: 240px;
+			background: #ccc;
+			display: block;
+			color: #333;
+			line-height: 35px;
+			text-align: center;
+			margin: 0 auto;
+		}
+
+		.active {
+			background: blue;
+			color: #eee;
+		}
+
+		.newBox {
+			padding: 10px 0;
+		}
+
+		.newList {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<ul class="wrap">
+		<li class="newBox">
+			<a href="javascript:void(0);" class="title active">灵魂歌手</a>
+			<ul class="newList" style="display: block;">
+				<li>林俊杰</li>
+				<li>韩红</li>
+				<li>那英</li>
+			</ul>
+		</li>
+
+		<li class="newBox">
+			<a href="javascript:void(0);" class="title">摇滚歌手</a>
+			<ul class="newList">
+				<li>哈林</li>
+				<li>催建</li>
+				<li>汪峰</li>
+			</ul>
+		</li>
+
+		<li class="newBox">
+			<a href="javascript:void(0);" class="title">古典歌手</a>
+			<ul class="newList">
+				<li>郎朗</li>
+				<li>李云迪</li>
+				<li>马友友</li>
+			</ul>
+		</li>
+	</ul>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$('.title').click(function () {
+			$(this).addClass("active").next().show().parent().siblings().children("a").removeClass("active").next().hide()
+		})
+	</script>
+</body>
+
+</html>

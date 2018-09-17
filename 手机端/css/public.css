@@ -1,0 +1,49 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+input {
+  border: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+img {
+  display: block;
+  border: none;
+}
+body {
+  color: #333;
+  font-size: 12px;
+  font-family: "Microsoft YaHei", sans-serif;
+}
+li {
+  list-style: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clear::after,
+.clear::before {
+  content: '';
+  display: block;
+  clear: both;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+.icon {
+  background: url("../img/h1.png") no-repeat;
+  background-size: 200px 200px;
+}

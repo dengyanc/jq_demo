@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>树形动画</title>
+	<style>
+		ul {
+			list-style: none;
+		}
+
+		.show {
+			list-style-image: url(img/2.gif);
+		}
+
+		.hide {
+			list-style-image: url(img/1.gif);
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>明星
+			<ul>
+				<li>男明星
+					<ul>
+						<li>偶像派
+							<ul>
+								<li>鹿晗</li>
+								<li>吴亦凡</li>
+								<li>张若筠</li>
+							</ul>
+						</li>
+						<li>喜剧派</li>
+						<li>搞笑派</li>
+					</ul>
+				</li>
+				<li>女明星</li>
+			</ul>
+		</li>
+		<li>老师</li>
+		<li>医生</li>
+	</ul>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$('li').has('ul').addClass('hide');
+		$('li').addClass('show');
+		$("li").click(function () {
+			$(this).has("ul").toggleClass("hide");
+			// toggleClass() 对设置或移除被选元素的一个或多个类进行切换。
+			$(this).has("ul").children().slideToggle(300);
+			// slideToggle() 方法通过使用滑动效果（高度变化）来切换元素的可见状态。
+			return false;
+		})
+	</script>
+</body>
+
+</html>

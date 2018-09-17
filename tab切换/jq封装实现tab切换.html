@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq封装实现tab切换</title>
+    <link rel="stylesheet" href="css/common/base.css" type="text/css"/>
+    <style>
+        .box{
+            width: 300px;
+            margin:0 auto;
+        }
+        .box .boxStyle li{
+            float: left;
+            width: 150px;
+            background: #aaa;
+            text-align: center;
+            cursor: pointer;
+        }
+        .box .newslist{
+            background: #ccc;
+        }
+        .box .boxStyle li.active{
+            background: #00AAFF;
+        }
+        .box2{
+            width: 300px;
+            margin:0 auto;
+        }
+        .box2 .boxStyle2 li{
+            float: left;
+            width: 150px;
+            background: #aaa;
+            text-align: center;
+            cursor: pointer;
+        }
+        .box2 .newslist2{
+            background: #ccc;
+        }
+        .box2 .boxStyle2 li.active{
+            background: #00AAFF;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="boxStyle">
+        <li class="active">衣服</li>
+        <li>衣服2</li>
+    </ul>
+    <ul class="newslist">
+        <li class="bb active">我是衣服1</li>
+        <li class="bb" style="display:none">我是衣服2</li>
+    </ul>
+</div>
+<div class="box2">
+    <ul class="boxStyle2">
+        <li class="active">鞋子1</li>
+        <li>鞋子2</li>
+    </ul>
+    <ul class="newslist2">
+        <li class="bb2 active">我是鞋子1</li>
+        <li class="bb2" style="display:none">我是鞋子2</li>
+    </ul>
+</div>
+<script src="js/jquery.js"></script>
+<script>
+    $(function(){
+        var tabs=function(e1,e2){
+            var e1=$(e1);//每一个导航
+            var e2=$(e2);//每一个内容区域
+            e1.click(function(){
+                if(!$(this).hasClass("active")){
+                    //成立的条件是：没有active
+                    e1.siblings().removeClass("active");
+                    $(this).addClass("active");
+                    var idx = e1.index(this);
+                    //<==> var idx = $(this).index();
+                    //console.log(idx);
+                    e2.fadeOut(0).removeClass("active");
+                    $(e2[idx]).fadeIn(0).addClass("active");
+                    // <==> $(e2).eq(idx).fadeIn(0).addClass("active");
+                }
+            })
+        }
+        tabs(".boxStyle li",".bb");
+        tabs(".boxStyle2 li",".bb2");
+    })
+</script>
+
+</body>
+</html>

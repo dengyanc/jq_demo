@@ -1,0 +1,96 @@
+body{
+	width: 100%; height: 100%;
+}
+.header{
+	width: 100%; height: 50px; position: fixed; left: 0; top: 0;
+	background: #ff3300; z-index: 9999;
+}
+.header .h-left{
+	position: absolute; top: 10%; left: 4%; height: 80%;
+}
+.header .h-left img{
+	display: block; width: 100%; height: 100%;
+}
+.header .h-center{
+	font-size: 24px; color: #fff; text-align: center; line-height: 50px;
+}
+.header .h-right{
+	position: absolute; right: 5%; top: 30%; height: 45%;
+}
+
+.main{
+	position: absolute; top: 50px; bottom: 50px; width: 100%; height: 100%;
+}
+.main .m-left{
+	position: fixed; left: 0; width: 28%; background: #EAEAEA;
+	height: 100%; 
+}
+.main .m-left .list li{
+	text-align: center; height: 60px; line-height: 60px; 
+	font-size: 18px; border-bottom: 1px dashed #666;
+}
+.main .m-left .list li.active{
+	background: #fff;
+}
+              
+.main .m-right{
+	width: 72%; height: auto; margin-left: 28%;
+}
+.main .m-right .boxList{
+	width: 100%; height: auto;
+}
+.main .m-right .boxList .h3{
+	font-size: 16px; color: #000; font-weight: normal;
+	border-bottom: 1px solid #000; height: 40px;
+	line-height: 40px; padding-left: 10px;
+}
+.main .m-right .boxList .box{
+	height: 33%; width: 100%; border-bottom: 1px solid #000;
+	position: relative; 
+}                   
+.main .m-right .boxList .box img{
+	display: block; width: 42%; height: 100px;
+	margin: 12% 0 2% 3%;
+}
+.main .m-right .boxList .box .title{
+	position: absolute; left: 50%; top: -8%; font-weight: normal;
+	font-size: 16px;
+}
+.main .m-right .boxList .box p{
+	position: absolute; left: 50%; top: 12%; font-size: 16px;
+}
+.main .m-right .boxList .box p font{
+	font-weight: bold; margin-right: 8%;
+}
+.main .m-right .boxList .box .jian{
+	display: block; position: absolute; left: 53%; top: 32%;
+	width: 36px; height: 36px; display: none;
+	
+}
+.main .m-right .boxList .box .jia{
+	position: absolute; left: 80%; top: 32%;
+	display: block; width: 36px; height: 36px;
+}
+.main .m-right .boxList .box .num{
+	position: absolute; left: 75%; top: 70%; display: none; 
+}
+
+
+.footer{
+	width: 100%; height: 50px; position: fixed; left: 0; bottom: 0;
+	background: #fff; border-top: 1px solid #eee; z-index: 9999;
+}
+.footer .f-left{
+	position:absolute; height: 120%; left: 10%; bottom: 20%;
+}
+.footer .f-left img{
+	display: block; height: 100%;
+}
+.footer .f-center{
+	text-align: center; line-height: 50px; color: red; font-size: 16px;
+}
+.footer .f-right{
+	position: absolute; right: 0; top: 0; height: 100%; width: 30%; 
+	background: #ff3300; text-align: center; line-height: 50px;
+	color: #fff; font-size: 16px;
+}

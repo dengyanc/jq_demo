@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cbKzLcfqLd3FViul7cmZfshbFKOXB3IE"></script>
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			.box{
+				 height: 50px; margin-top: 30px; margin-bottom: 20px;
+			}
+			td{
+				text-align: center; padding: 2px 6px;
+			}
+			.content{
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="1">
+			<thead>
+				<tr>
+					<td></td>
+					<td>序号</td>
+					<td>品牌</td>
+					<td>产品名称</td>
+					<td>产品价格</td>
+					<td>颜色分类</td>
+					<td>库存量</td>
+					<td>套餐</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		
+		<div class="box">
+			<h2>选择你的收货地址：</h2>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<input type="text" id="txt" />
+		</div>
+		<button>提交</button>
+		
+		<div class="content"></div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:"json/goods.json",
+					async:true,
+					dataType:'json',
+					success:function(goodsList){
+						console.log(goodsList);
+						var str = '';
+						var num = 0;
+						$.each(goodsList, function(i,g) {
+							console.log(3333,g)
+							$.each(g.goodsdata, function(c,goods) {
+								num++;
+								str +=  "<tr><td><input type='checkbox' /></td>"+
+											"<td>"+num+"</td>"+
+											"<td>"+g.goodsname+"</td>"+
+											"<td>"+goods.name+"</td>"+
+											"<td>"+goods.money+"</td>"+
+											"<td><input type='radio' name='"+goods.name+"' value='"+goods.colors[0]+"'/>"+goods.colors[0]+"<input type='radio' name='"+goods.name+"' value='"+goods.colors[1]+"'/>"+goods.colors[1]+"<input type='radio' name='"+goods.name+"' />"+goods.colors[2]+"</td>"+
+											"<td>"+goods.stock+"</td>"+
+											"<td>"+goods.suit+"</td></tr>";
+							});
+							$('tbody').html(str);
+						});
+					},error:function(err){
+						console.log(err);
+					}
+				});
+				
+				$.ajax({
+					type:'get',
+					async:true,
+					url:'json/city.json',
+					dataType:'json',
+					success:function(msg){
+						//console.log(msg);
+						msgList = msg;
+						var str = '';
+						$.each(msg.p, function(i,province) {
+							//console.log(province);
+							str += "<option>"+province+"</option>"
+						});
+						$('select').eq(0).append(str);
+					},error:function(err){
+						console.log(err);
+					}
+				});
+				
+				$('select').eq(0).change(function(){
+					var str = '';
+					var val = $(this).val();
+					$(this).nextAll().html('<option>--请选择--</option>')
+					$.each(msgList.c, function(i,province) {
+						//console.log(i);
+						if(i == val){
+							$.each(province, function(c,city) {
+								//console.log(city)
+								str += "<option>"+city+"</option>"
+							});
+							$('select').eq(1).append(str);
+						}
+					});
+				});
+				
+				$('select').eq(1).change(function(){
+					var str = '';
+					$(this).nextAll().html('<option>--请选择--</option>')
+					var one = $('select').eq(0).val();
+					var two = $('select').eq(1).val();
+					var three = one+"-"+two;
+					$.each(msgList.a, function(i,province) {
+						//console.log(province)
+						if(i == three){
+							$.each(province, function(c,city) {
+								str += "<option>"+city+"</option>"
+							});
+							$('select').eq(2).append(str);
+						}
+					});
+				})
+				
+				$('button').click(function(){
+					var myVal = $('select').eq(0).val()+'-'+$('select').eq(1).val()+'-'+$('select').eq(2).val()+'-'+$('#txt').val();
+					var main = '';
+					$(":checkbox:checked").each(function(){
+						main += $(this).parent().siblings().eq(2).text()+'-'+$(this).parent().siblings().eq(3).text()+'-'+$(this).parent().siblings().eq(4).children(":checked").val()+'-'+$(this).parent().siblings().eq(6).text()+'<br>';
+					})
+					$(".content").append("<h3>订单信息:</h3>"+main+'<br>');
+					$('.content').append("收货地址："+myVal+'<br>');
+				})
+				
+			})
+		</script>
+	</body>
+</html>

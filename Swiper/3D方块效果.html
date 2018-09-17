@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="swiper/css/swiper.min.css"/>
+		<style type="text/css">
+			 html, body {
+		        position: relative;
+		        height: 100%;
+		    }
+		    body {
+		        background: #fff;
+		        /*font-family: Helvetica Neue, Helvetica, Arial, sans-serif;*/
+		        font-size: 14px;
+		        color:#000;
+		        margin: 0;
+		        padding: 0;
+		    }
+		    .swiper-container {
+		        width: 300px;
+		        height: 300px;
+		        position: absolute;
+		        left: 50%;
+		        top: 50%;
+		        margin-left: -150px;
+		        margin-top: -150px;
+		    }
+		    .swiper-slide {
+		        background-position: center;
+		        background-size: cover;
+		    }
+		</style>
+	</head>
+	<body>
+		<h1 style="text-align: center;">3D方块效果</h1>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="background-image: url(img/1a.jpg);"></div>
+				<div class="swiper-slide" style="background-image: url(img/2a.jpg);"></div>
+				<div class="swiper-slide" style="background-image: url(img/3a.jpg);"></div>
+				<div class="swiper-slide" style="background-image: url(img/4a.jpg);"></div>
+				<div class="swiper-slide" style="background-image: url(img/5a.jpg);"></div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="swiper/js/swiper.jquery.min.js"></script>
+		<script>
+			 var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        effect: 'cube',
+	        grabCursor: true,
+	        cube: {
+	            shadow: true,
+	            slideShadows: true,
+	            shadowOffset: 20,
+	            shadowScale: 0.94
+	        }
+   		});
+		</script>
+	</body>
+</html>

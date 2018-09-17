@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body {
+			padding: 50px;
+		}
+
+		.box {
+			position: relative;
+		}
+
+		.smallBox {
+			width: 400px;
+			height: 400px;
+			border: 1px solid #ccc;
+		}
+
+		.smallBox img {
+			width: 400px;
+			height: 400px;
+			position: absolute;
+		}
+
+		.bigBox {
+			width: 400px;
+			height: 400px;
+			position: absolute;
+			left: 500px;
+			top: 0;
+			border: 1px solid #ccc;
+			overflow: hidden;
+		}
+
+		.moveBox {
+			width: 160px;
+			height: 120px;
+			background: rgba(0, 0, 2, 0.4);
+			position: absolute;
+			display: none;
+		}
+
+		.bigBox img {
+			width: 1000px;
+			height: 1350px;
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<div class="smallBox">
+			<img src="img/4a.jpg" />
+			<div class="moveBox"></div>
+		</div>
+
+		<div class="bigBox">
+			<img src="img/4a.jpg" alt="" />
+		</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			var smallBox = $('.smallBox');
+			var moveBox = $('.moveBox');
+			var imgBig = $('.bigBox img');
+			var bigBox = $('.bigBox');
+
+			smallBox.on('mouseover', function () {
+				// 鼠标移入：图标显示，大图显示
+				moveBox.css('display', 'block');
+				imgBig.css('display', 'block');
+			});
+			smallBox.on('mouseout', function () {
+				// 鼠标移出：图标隐藏，大图隐藏
+				moveBox.css('display', 'none');
+				imgBig.css('display', 'none');
+			});
+
+			smallBox.on('mousemove', function (e) {
+				// pageX() 属性是鼠标指针的位置，相对于文档的左边缘
+				//  disX与disY: 表示鼠标指针在 smallBox 的位置
+				var disX = e.pageX - $(this).offset().left - moveBox.width() / 2;
+				var disY = e.pageY - $(this).offset().top - moveBox.height() / 2;
+
+				// maxX 与 maxY: 表示能移动的最大位置
+				var maxX = smallBox.width() - moveBox.width();
+				var maxY = smallBox.height() - moveBox.height();
+
+				if (disX > maxX) {
+					disX = maxX
+				} else if (disX < 0) {
+					disX = 0;
+				}
+				if (disY > maxY) {
+					disY = maxY
+				} else if (disY < 0) {
+					disY = 0;
+				}
+
+				moveBox.css({ left: disX + "px", top: disY + "px" });
+
+				// 第一种方法： 鼠标指针的位置  * 大图宽  / 小图宽
+				//					var bigX = disX*imgBig.width()/smallBox.width();
+				//					var bigY = disY*imgBig.height()/smallBox.height();
+				//					imgBig.css({left:-bigX+"px",top:-bigY+"px"});
+
+				// 第二种方法：(大图宽 - 大div的宽) / 能移动的最大值  * 鼠标指针的位置
+				var beiX = (imgBig.width() - bigBox.width()) / maxX;
+				var beiY = (imgBig.height() - bigBox.height()) / maxY;
+				imgBig.css({ left: -beiX * disX + "px", top: -beiY * disY + "px" });
+			});
+
+		})
+	</script>
+</body>
+
+</html>

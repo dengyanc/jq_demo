@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			.box{width: 400px; height: 100px; margin: 0 auto;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+			<select>
+				<option>--请选择--</option>
+			</select>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+					type:'get',
+					url:'json/city.json',
+					async:true,
+					dataType:'json',
+					success:function(msg){
+						msgList = msg;
+						console.log(msg);
+						var str = "";
+						$.each(msg, function(i,province) {
+							str += "<option>"+province.name+"</option>";
+						});
+						$('select').eq(0).html(str);
+					},error:function(err){
+						console.log(err);
+					}
+				});
+			
+				$('select').eq(0).change(function(){
+					var str = '';
+					var val = $(this).val();
+					$("select").eq(2).html("<option>请选择</option>");
+					$.each(msgList,function(i,province){
+						if(province.name == val){
+							$.each(province.sub,function(i,subb){
+								str += "<option>"+subb.name+"</option>";
+							})
+							$('select').eq(1).html(str);
+						}
+					});
+				});
+				
+				$('select').eq(1).change(function(){
+					var str = '';
+					var val = $(this).val();
+				    var val2 = $('select').eq(0).val();  
+					//console.log(val)
+					$.each(msgList, function(i,province) {
+						if(province.name == val2){
+							$.each(province.sub,function(c,city){
+								if(city.name == val && city.sub != undefined){
+									$.each(city.sub, function(t,contory) {
+										str += "<option>"+contory.name+"</option>";
+									});
+									$('select').eq(2).html(str);
+								}
+							});
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

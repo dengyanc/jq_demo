@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		a {
+			text-decoration: none;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		ul li span {
+			display: inline-block;
+			width: 30px;
+			height: 20px;
+		}
+
+		ul li span.show {
+			background: url(img/2.gif) no-repeat center center;
+		}
+
+		ul li span.hide {
+			background: url(img/1.gif) no-repeat center center;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>
+			<span></span>
+			<a href="javascript:void(0);">影视界</a>
+			<ul>
+				<li>
+					<span></span>
+					<a href="javascript:void(0);">搞笑</a>
+					<ul>
+						<li>
+							<span></span>
+							<a href="javascript:void(0);">宋小宝</a>
+							<ul>
+								<li>
+									<span></span>
+									<a href="javascript:void(0);">啦啦</a>
+								</li>
+								<li>
+									<span></span>
+									<a href="javascript:void(0);">潇潇</a>
+								</li>
+								<li>
+									<span></span>
+									<a href="javascript:void(0);">明哥</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<span></span>
+							<a href="javascript:void(0);">贾玲</a>
+						</li>
+						<li>
+							<span></span>
+							<a href="javascript:void(0);">王祖蓝</a>
+						</li>
+						<li>
+							<span></span>
+							<a href="javascript:void(0);">宝贝儿</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span></span>
+					<a href="javascript:void(0);">搞笑</a>
+				</li>
+				<li>
+					<span></span>
+					<a href="javascript:void(0);">搞笑</a>
+				</li>
+				<li>
+					<span></span>
+					<a href="javascript:void(0);">搞笑</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			$('ul li span').addClass('show');
+			$('ul li').has('ul').children('span').addClass('hide');
+			$('li span').click(function () {
+				$(this).parent().has('ul').children('span').toggleClass('hide');
+				//toggleClass() 对设置或移除被选元素的一个或多个类进行切换。
+				$(this).parent().has('ul').children('ul').slideToggle();
+				//slideToggle() 方法通过使用滑动效果（高度变化）来切换元素的可见状态。
+				//如果被选元素是可见的，则隐藏这些元素，如果被选元素是隐藏的，则显示这些元素。
+				return false
+			})
+		})
+	</script>
+</body>
+
+</html>

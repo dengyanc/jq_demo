@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>填写地址</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/address.css"/>
+	</head>
+	<body>
+		<div class="header1">
+			<header class="header">
+				<a href="javascript:void(0)"></a>
+				<span></span>
+			</header>
+		</div>
+		<main class="add">
+			<h3>收获信息</h3>
+			<table>
+				<tr>
+					<td>收货人：</td>
+					<td></td>
+					<td><input type="text" class="text"/></td>
+				</tr>
+				<tr>
+					<td>联系电话：</td>
+					<td></td>
+					<td><input type="text" class="text"/></td>
+				</tr>
+				<tr>
+					<td>所在地区：</td>
+					<td></td>
+					<td>
+						<select><option>请选择</option></select><select><option>请选择</option></select><select><option>请选择</option></select>
+					</td>
+				</tr>
+				<tr>
+					<td>详细地址：</td>
+					<td></td>
+					<td><input type="text" class="addre"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td><input type="checkbox" class="box"/>设为默认地址</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td><a href="javascript:void(0)">保存</a></td>
+				</tr>
+			</table>
+			<div class="zhonxin">
+				<h3>今日推荐</h3>
+				<div class="zhonxin1">
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f1.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f2.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f3.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f4.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f5.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f6.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f7.jpg"/></div>
+					<div class="z_ctt"><img src="../img/zhongxinfangda/f8.jpg"/></div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="footer">
+				<div class="footer_one">
+					<ul>
+						<li class="first">购物指南</li>
+						<li>服务商信息</li>
+						<li>购物流程</li>
+						<li>注册登录</li>
+					</ul>
+					<ul>
+						<li class="first">配送方式</li>
+						<li>配送方式</li>
+						<li>配送方式信息</li>
+						<li>签收原则</li>
+						<li>物流查询</li>
+					</ul>
+					<ul>
+						<li class="first">字符方式</li>
+						<li>支付方式</li>
+						<li>支付问题</li>
+						<li>分期支付</li>
+					</ul>
+					<ul>
+						<li class="first">订单信息</li>
+						<li>订单信息</li>
+						<li>其他频道订单发票</li>
+						<li>手机频道订单发票</li>
+					</ul>
+					<ul>
+						<li class="first">售后服务</li>
+						<li>售后政策总则</li>
+						<li>手机售后政策总则</li>
+						<li>24小时在线客服</li>
+					</ul>
+					<ul>
+						<li class="first">其他说明</li>
+						<li>服务承诺</li>
+						<li>账户安全</li>
+						<li>产品安全</li>
+					</ul>
+				</div>
+			</div>
+			<div class="foot">
+				<div class="foot_one">
+					<p>
+						<a href="javascript:void(0);">关于联想</a><span>|</span>
+						<a href="javascript:void(0);">联系我们</a><span>|</span>
+						<a href="javascript:void(0);">工作机会</a><span>|</span>
+						<a href="javascript:void(0);">新闻中心</a><span>|</span>
+						<a href="javascript:void(0);">聚享汇会员专享</a><span>|</span>
+						<a href="javascript:void(0);">联想社区</a><span>|</span>
+						<a href="javascript:void(0);">NBD</a><span>|</span>
+						<a href="javascript:void(0);">联想超融合</a><span>|</span>
+						<a href="javascript:void(0);">联想官网热搜</a><span>|</span>
+						<a href="javascript:void(0);">分类大全</a><span>|</span>
+						<a href="javascript:void(0);">联想产品大全</a><span>|</span>
+						<a href="javascript:void(0);">智慧医疗</a>
+					</p>
+					<p>
+						<a href="javascript:void(0);">版权所有 : 1998-2016 联想集团</a><span>|</span>
+						<a href="javascript:void(0);">法律公告</a><span>|</span>
+						<a href="javascript:void(0);">隐私保护</a><span>|</span>
+						<a href="javascript:void(0);">京ICP备11035381</a><span>|</span>
+						<a href="javascript:void(0);">京公网安备110108007970</a><span>|</span>
+						<a href="javascript:void(0);">营业执照:110000410127232</a><span>|</span>
+						<a href="javascript:void(0);">销售网点</a><span>|</span>
+						<a href="javascript:void(0);">服务站点</a>
+					</p>
+				</div>
+			</div>
+		</footer>
+		<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:"../json/cityzhoukao.json",
+					async:true,
+					dataType:"JSON",
+					success:function(data){
+						dataList = data;
+						var str = "<option>请选择</option>";
+						//遍历省
+						$.each(dataList.p, function(i,ci) {
+							str += "<option>"+ci+"</option>"
+						});
+						$("select").eq(0).html(str);
+						//遍历市
+						$("select").eq(0).change(function(){
+							var val = $(this).val();
+							var str = "<option>请选择</option>";
+							$("select").eq(1).html("<option>请选择</option>");
+							$("select").eq(2).html("<option>请选择</option>");
+							$.each(dataList.c, function(i,ci) {
+								if(i == val){
+									$.each(ci, function(i,cit) {
+										str += "<option>"+cit+"</option>"
+									});
+									$("select").eq(1).html(str);
+								}
+							});
+						})
+						//遍历村
+						$("select").eq(1).change(function(){
+							var str = "<option>请选择</option>";
+							var one = $("select").eq(0).val();
+							var two = $("select").eq(1).val();
+							var ot = one+"-"+two;
+							$("select").eq(2).html("<option>请选择</option>");
+							$.each(dataList.a, function(i,city) {
+								if(i == ot){
+									$.each(city, function(i,cit) {
+										str += "<option>"+cit+"</option>"
+									});
+									$("select").eq(2).html(str);
+								}
+							});
+						})
+					},
+					error:function(error){
+						alert(1);
+					}
+				});
+				for(var i=0; i<$(".z_ctt").length; i++){
+					$(".z_ctt").eq(i).css("left",$(".z_ctt").eq(i).position().left);
+					$(".z_ctt").eq(i).css("top",$(".z_ctt").eq(i).position().top);
+					$(".z_ctt").eq(i).attr("l",$(".z_ctt").eq(i).position().left);
+					$(".z_ctt").eq(i).attr("t",$(".z_ctt").eq(i).position().top);
+				}
+				$(".z_ctt").css("position","absolute");
+				var wh = $(".z_ctt").width();
+				var hi = $(".z_ctt").height();
+				$(".z_ctt").hover(function(){
+					$(this).css("z-index",99999);
+					$(this).stop(true,true).animate({
+						width:wh+wh,
+						height:hi+hi,
+						left:$(this).attr("l")-wh/2,
+						top:$(this).attr("t")-hi/2
+					})
+				},function(){
+					$(this).css("z-index",0);
+					$(this).stop(true,true).animate({
+						width:wh,
+						height:hi,
+						left:$(this).attr("l"),
+						top:$(this).attr("t")
+					})
+				})
+			})
+		</script>
+	</body>
+</html>
